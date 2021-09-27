@@ -1,28 +1,43 @@
-import React from 'react';
-// import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-import Home from './pages/Home/Home';
-import Dogs from './pages/Dogs/Dogs';
-import Cats from './pages/Cats/Cats';
+import React from "react";
+import { ThemeProvider } from "@material-ui/styles";
+import { CssBaseline } from "@material-ui/core";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Cats from "./pages/Cats/Cats";
+import Dogs from "./pages/Dogs/Dogs";
+import Home from "./pages/Home/Home";
+import DogBreed from "./components/DogBreed/DogBreed";
+
+import useStyles from "./App.styles";
+import theme from "./theme";
+import CollapsedBreadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
 
 function App() {
+  const classes = useStyles();
+
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/dogs">
-            <Dogs />
-          </Route>
-          <Route path="/cats">
-            <Cats />
-          </Route>
-        </Switch>
-      </div>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="App">
+          <Header />
+          <CollapsedBreadcrumbs />
+          <div className={classes.container}>
+            <Switch>
+              <Route exact path="/dogs" component={Dogs} />
+              <Route path="/dogs/:breed">
+                <DogBreed />
+              </Route>
+              <Route exact path="/cats">
+                <Cats />
+              </Route>
+              <Route exact path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </div>
+        </div>
+      </ThemeProvider>
     </Router>
   );
 }

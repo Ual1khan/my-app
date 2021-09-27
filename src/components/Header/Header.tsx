@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import { Card } from '@material-ui/core';
 
@@ -7,8 +7,7 @@ interface Props {};
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: theme.spacing(1),
-        backgroundColor: "#f2f2f2",
+        borderRadius: 0,
     },
     list: {
         listStyleType: "none",
@@ -21,7 +20,10 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: "none",
         marginRight: theme.spacing(2),
         fontSize: "16px",
-        color: "#0b5fd6",
+        color: theme.palette.text.primary,
+        "&.active": {
+            color: theme.palette.primary.main,
+        },
     },
   }));
   
@@ -33,19 +35,19 @@ const Header = (props: Props) => {
             <Card className={classes.root}>
                 <ul className={classes.list}>
                     <li>
-                        <Link className={classes.link} to="/">
+                        <NavLink exact activeClassName="active" className={classes.link} to="/">
                             Home
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link className={classes.link} to="/dogs">
+                        <NavLink exact activeClassName="active" className={classes.link} to="/dogs">
                             Dogs
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link className={classes.link} to="/cats">
+                        <NavLink exact activeClassName="active" className={classes.link} to="/cats">
                             Cats
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
             </Card>
