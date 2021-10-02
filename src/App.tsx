@@ -11,6 +11,7 @@ import DogBreed from "./components/DogBreed/DogBreed";
 import useStyles from "./App.styles";
 import theme from "./theme";
 import CollapsedBreadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
+import NoMatch from "./pages/NoMatch/NoMatch";
 
 function App() {
   const classes = useStyles();
@@ -33,6 +34,9 @@ function App() {
               </Route>
               <Route exact path="/">
                 <Home />
+              </Route>
+              <Route path="*">
+                <NoMatch />
               </Route>
             </Switch>
           </div>
